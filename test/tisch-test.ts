@@ -1,5 +1,5 @@
 import {readFileSync} from "fs";
-import {inspect} from  "util";
+import {inspect} from "util";
 
 
 import {parse} from "../tisch-parser";

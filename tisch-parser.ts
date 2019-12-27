@@ -1,4 +1,4 @@
-type DataEntry = {[key: string]: string | number | boolean};
+type DataEntry = {[key: string]: string | number | Date | boolean};
 
 interface IResult {
   data: DataEntry[];
@@ -50,6 +50,16 @@ const addEntryData = (
     entry[extraDataName] = splitData.join("__") || null;
   } else {
     entry[dataName] = data;
+  }
+
+  const splitData = entry[dataName] as string;
+
+  if (dataType === "NUMBER") {
+    entry[dataName] = parseFloat(splitData);
+  } else if (dataType === "DATE") {
+    entry[dataName] = new Date(splitData);
+  } else if (dataType === "BOOL") {
+    entry[dataName] = splitData.toLowerCase() === "true";
   }
 };
 
