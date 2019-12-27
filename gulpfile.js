@@ -18,15 +18,19 @@ const serve = (callback) => {
   callback();
 };
 
+const getTischParserES5 = () => {
+  return transpile(readFileSync("./tisch-parser.ts").toString(), {target: "es5", module: "CommonJS"})
+    .replace(/ {4}/mg, "  ")
+    .replace(/^.*exports.*$/mg, "");
+};
+
 const updateTestHTML = (callback) => {
   const tischData = readFileSync("./test/tisch-test.txt", "utf8");
-  const tischParser = transpile(readFileSync("./tisch-parser.ts").toString(), {target: "es5"});
 
   const tischHTML = `
     <html>
       <body>
-        <script>var exports = {};</script>
-        <script>${tischParser}</script>
+        <script>${getTischParserES5()}</script>
         <script>
           var parsed = parse(\`${tischData}\`);
           console.log({parsed});
@@ -46,8 +50,13 @@ const watcher = (callback) => {
   callback();
 };
 
-exports.updateTestHTML = updateTestHTML;
+const es5Script = (callback) => {
+  writeFileSync("./build/es5-tisch-parser.js", getTischParserES5(), "utf8");
 
+  callback();
+};
+
+exports.es5Script = es5Script;
 exports.watch = series(
   updateTestHTML,
   serve,
