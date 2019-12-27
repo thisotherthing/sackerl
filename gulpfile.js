@@ -20,7 +20,7 @@ const serve = (callback) => {
 
 const updateTestHTML = (callback) => {
   const tischData = readFileSync("./test/tisch-test.txt", "utf8");
-  const tischParser = transpile(readFileSync("./tisch-parser.ts").toString());
+  const tischParser = transpile(readFileSync("./tisch-parser.ts").toString(), {target: "es5"});
 
   const tischHTML = `
     <html>
@@ -42,7 +42,7 @@ const updateTestHTML = (callback) => {
 };
 
 const watcher = (callback) => {
-  watch(["./*.ts"], series(updateTestHTML, reload));
+  watch(["./test/*.txt", "./*.ts"], series(updateTestHTML, reload));
   callback();
 };
 
