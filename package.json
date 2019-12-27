@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tisch-test": "ts-node ./test/tisch-test.ts"
+    "tisch-test": "ts-node ./test/tisch-test.ts",
+    "dev": "gulp watch"
   },
   "author": "Stefan Kernjak",
   "license": "MIT",
