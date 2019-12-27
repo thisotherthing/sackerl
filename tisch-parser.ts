@@ -54,7 +54,9 @@ const addEntryData = (
 
   const splitData = entry[dataName] as string;
 
-  if (dataType === "NUMBER") {
+  if (Array.isArray(dataType) && !dataType.includes(splitData)) {
+    entry[dataName] = `INVALID TYPE ${entry[dataName]}`;
+  } else if (dataType === "NUMBER") {
     entry[dataName] = parseFloat(splitData);
   } else if (dataType === "DATE") {
     entry[dataName] = new Date(splitData);
