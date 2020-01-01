@@ -9,12 +9,13 @@
   },
   "author": "Stefan Kernjak",
   "license": "MIT",
+  "eslintConfig": {
+    "extends": "thisotherthing-typescript"
+  },
   "devDependencies": {
     "@types/node": "^13.1.0",
-    "@typescript-eslint/eslint-plugin": "^2.13.0",
-    "@typescript-eslint/parser": "^2.13.0",
     "browser-sync": "^2.26.7",
-    "eslint": "^6.8.0",
+    "eslint-config-thisotherthing-typescript": "git+ssh://git@github.com/thisotherthing/eslint-config-thisotherthing-typescript.git",
     "gulp": "^4.0.2",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4"
